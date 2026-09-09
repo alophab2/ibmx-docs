@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IBMx Docs — The Modern IBM i & AS400 Knowledge Base</title>
+  <meta name="description" content="Free, open-source, modern, and practical guides for IBM i (AS400/iSeries) developers, sysadmins, and modernizers.">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#edf5ff',
+              100: '#d0e1fd',
+              500: '#0f62fe', // IBM Blue
+              600: '#0043ce',
+              900: '#001141',
+            },
+            darkbg: '#0f172a',
+            cardbg: '#1e293b',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-darkbg text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Header / Navigation -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="bg-brand-500 text-white font-mono font-bold text-xl px-2.5 py-1 rounded">IBMx</div>
+        <span class="text-lg font-semibold tracking-tight text-white">docs<span class="text-brand-500">.dev</span></span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+        <a href="#getting-started" class="hover:text-brand-500 transition">Getting Started</a>
+        <a href="#commands" class="hover:text-brand-500 transition">Commands & QSYS2</a>
+        <a href="#sysadmin" class="hover:text-brand-500 transition">SysAdmin & HA</a>
+        <a href="#modern-rpg" class="hover:text-brand-500 transition">Modern RPG</a>
+        <a href="#cheatsheet" class="hover:text-brand-500 transition">Cheat Sheets</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <a href="https://github.com/alophab2/ibmx-docs" target="_blank" class="text-slate-400 hover:text-white transition" title="GitHub Repo">
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+        <a href="#cheatsheet" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+          Get Cheat Sheet
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
+    <div class="inline-flex items-center space-x-2 bg-brand-500/10 border border-brand-500/20 text-brand-500 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-6">
+      <span>Updated for IBM i 7.5 & VS Code</span>
+    </div>
+    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6">
+      The Modern Survival Guide for <span class="text-brand-500">IBM i & AS400</span>
+    </h1>
+    <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10">
+      Zero fluff. Open-source SOPs, CL Command dictionaries, QSYS2 SQL tricks, and Free-Form RPG modernization for engineers.
+    </p>
+
+    <!-- Search Bar -->
+    <div class="max-w-2xl mx-auto relative mb-8">
+      <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+      </div>
+      <input type="text" placeholder="Search commands (e.g. WRKACTJOB), CPF codes, or QSYS2 queries..." 
+             class="w-full pl-11 pr-24 py-4 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm sm:text-base shadow-2xl">
+      <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+        <kbd class="bg-slate-700 text-slate-300 text-xs px-2 py-1 rounded font-mono border border-slate-600">Ctrl + K</kbd>
+      </div>
+    </div>
+
+    <!-- Quick Tags -->
+    <div class="flex flex-wrap justify-center gap-2 text-xs text-slate-400">
+      <span class="text-slate-500">Popular:</span>
+      <a href="https://github.com/alophab2/ibmx-docs/tree/main/cheat-sheets" class="hover:text-brand-500 underline decoration-slate-600">WRKACTJOB</a>
+      <a href="https://github.com/alophab2/ibmx-docs/tree/main/scripts" class="hover:text-brand-500 underline decoration-slate-600">ASP > 90% Fix</a>
+      <a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 underline decoration-slate-600">VS Code + Code4i</a>
+      <a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 underline decoration-slate-600">QSYS2.ACTIVE_JOB_INFO</a>
+    </div>
+  </section>
+
+  <!-- Core Content Grid / Main Sections -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+    
+    <!-- Category Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      
+      <!-- Card 1: Getting Started -->
+      <div id="getting-started" class="bg-cardbg border border-slate-800 rounded-xl p-6 hover:border-brand-500/50 transition group">
+        <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-lg flex items-center justify-center mb-4 group-hover:bg-brand-500 group-hover:text-white transition">
+          <i data-lucide="rocket" class="w-6 h-6"></i>
+        </div>
+        <h2 class="text-xl font-bold text-white mb-2">1. Getting Started</h2>
+        <p class="text-sm text-slate-400 mb-4">New to IBM i? Get up and running in days without getting lost in 5250 green screens.</p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Pub400 Free Account Setup</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> ACS Client Configuration Guide</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs/tree/main/cheat-sheets" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Top 20 Must-Know CL Commands</a></li>
+        </ul>
+      </div>
+
+      <!-- Card 2: Commands & QSYS2 -->
+      <div id="commands" class="bg-cardbg border border-slate-800 rounded-xl p-6 hover:border-brand-500/50 transition group">
+        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-500 group-hover:text-white transition">
+          <i data-lucide="database" class="w-6 h-6"></i>
+        </div>
+        <h2 class="text-xl font-bold text-white mb-2">2. Commands & QSYS2</h2>
+        <p class="text-sm text-slate-400 mb-4">Fast lookup dictionary for traditional CL commands and modern QSYS2 SQL services.</p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> WRKACTJOB & WRKOBJ Deep Dive</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Query System Status via SQL</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Kill Hung Sessions using QSYS2</a></li>
+        </ul>
+      </div>
+
+      <!-- Card 3: SysAdmin & Troubleshooting -->
+      <div id="sysadmin" class="bg-cardbg border border-slate-800 rounded-xl p-6 hover:border-brand-500/50 transition group">
+        <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-lg flex items-center justify-center mb-4 group-hover:bg-amber-500 group-hover:text-white transition">
+          <i data-lucide="shield-alert" class="w-6 h-6"></i>
+        </div>
+        <h2 class="text-xl font-bold text-white mb-2">3. SysAdmin & Troubleshooting</h2>
+        <p class="text-sm text-slate-400 mb-4">Battle-tested SOPs for disk emergencies, PTF updates, and CPF error resolution.</p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li><a href="https://github.com/alophab2/ibmx-docs/tree/main/scripts" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> ASP > 90% Emergency Cleanup SOP</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Common CPF Error Index & Fixes</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> BRMS Backup & Recovery Setup</a></li>
+        </ul>
+      </div>
+
+      <!-- Card 4: Modern RPG Development -->
+      <div id="modern-rpg" class="bg-cardbg border border-slate-800 rounded-xl p-6 hover:border-brand-500/50 transition group">
+        <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:text-white transition">
+          <i data-lucide="code-2" class="w-6 h-6"></i>
+        </div>
+        <h2 class="text-xl font-bold text-white mb-2">4. Modern RPG Dev</h2>
+        <p class="text-sm text-slate-400 mb-4">Migrate from RPG III/IV to Fully Free-Form RPG, Embedded SQL, and modern IDEs.</p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Fully Free-Form RPG Syntax Guide</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> VS Code + Code4i vs RDi Setup</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Embedded SQL & Procedures</a></li>
+        </ul>
+      </div>
+
+      <!-- Card 5: Open Source & APIs -->
+      <div class="bg-cardbg border border-slate-800 rounded-xl p-6 hover:border-brand-500/50 transition group">
+        <div class="w-12 h-12 bg-cyan-500/10 text-cyan-400 rounded-lg flex items-center justify-center mb-4 group-hover:bg-cyan-500 group-hover:text-white transition">
+          <i data-lucide="cpu" class="w-6 h-6"></i>
+        </div>
+        <h2 class="text-xl font-bold text-white mb-2">5. Open Source & APIs</h2>
+        <p class="text-sm text-slate-400 mb-4">Leverage Python, Node.js, and REST APIs on IBM i PASE environment.</p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Setting up Yum & PASE Environment</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Publish RPG as REST API via IWS</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Python db2_iaccess Integration</a></li>
+        </ul>
+      </div>
+
+      <!-- Card 6: Downloadable Cheat Sheets -->
+      <div id="cheatsheet" class="bg-cardbg border border-slate-800 rounded-xl p-6 hover:border-brand-500/50 transition group">
+        <div class="w-12 h-12 bg-rose-500/10 text-rose-400 rounded-lg flex items-center justify-center mb-4 group-hover:bg-rose-500 group-hover:text-white transition">
+          <i data-lucide="file-text" class="w-6 h-6"></i>
+        </div>
+        <h2 class="text-xl font-bold text-white mb-2">6. Cheat Sheets & PDF</h2>
+        <p class="text-sm text-slate-400 mb-4">Printable desk reference cards and quick automation scripts.</p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li><a href="https://github.com/alophab2/ibmx-docs/tree/main/cheat-sheets" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> IBM i Essential Commands (PDF)</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> QSYS2 SQL Services Cheat Sheet</a></li>
+          <li><a href="https://github.com/alophab2/ibmx-docs/tree/main/scripts" class="hover:text-brand-500 flex items-center"><i data-lucide="chevron-right" class="w-4 h-4 mr-1 text-slate-500"></i> Auto-cleanup Spool Files Script</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Newsletter / Lead Magnet Banner -->
+    <div class="bg-gradient-to-r from-brand-900 to-slate-900 border border-brand-500/30 rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden">
+      <div class="max-w-2xl mx-auto relative z-10">
+        <i data-lucide="mail" class="w-10 h-10 text-brand-500 mx-auto mb-4"></i>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Get the Free "IBM i Admin Survival PDF"</h2>
+        <p class="text-slate-300 text-sm sm:text-base mb-6">Join 3,000+ engineers receiving weekly IBM i modern tips, script snippets, and critical patch alerts.</p>
+        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+          <input type="email" placeholder="enter.your@email.com" required 
+                 class="flex-1 px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+          <button type="submit" class="bg-brand-500 hover:bg-brand-600 text-white font-medium px-6 py-3 rounded-lg text-sm transition">
+            Download PDF
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 space-y-4 md:space-y-0">
+      <div>
+        © 2026 IBMx Docs — Independent open-source documentation. Not affiliated with IBM Corporation.
+      </div>
+      <div class="flex space-x-6">
+        <a href="https://github.com/alophab2/ibmx-docs/blob/main/LICENSE" class="hover:text-slate-400">MIT License</a>
+        <a href="https://github.com/alophab2/ibmx-docs/blob/main/CONTRIBUTING.md" class="hover:text-slate-400">Contribute on GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
